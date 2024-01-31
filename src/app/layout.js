@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ThemeProvider from "@/components/ThemeProvider/ThemeProvider";
-
+import { Toaster } from 'react-hot-toast';
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <main className="font-normal">
             <Header />
+            <Toaster/>
             {children}
             <Footer />
           </main>
