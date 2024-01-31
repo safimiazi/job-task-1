@@ -18,7 +18,7 @@ export async function POST(req){
         }).save();
 
         console.log("user created => ", user)
-        return NextResponse.json(user);
+        return NextResponse.json({success: "Registered Successfully"});
     } catch(err) {
         console.log(err);
         return NextResponse.json({err: err.message}, {status: 500})
