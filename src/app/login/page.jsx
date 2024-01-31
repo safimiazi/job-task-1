@@ -2,16 +2,34 @@
 import Link from "next/link";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-
-
+import {signIn} from "next-auth/react"
+import toast from "react-hot-toast";
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+    const router = useRouter()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const name = form.email.value;
-        console.log(name);
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+            const result = await signIn("credentials", {
+                redirect: false,
+                email, password,
+            })
+            if(result?.error){
+                toast.error(result?.error);
+            } else {
+                toast.success("Logged in Successfully");
+                router.push("/")
+            }
+            
+        } catch (error) {
+            
+        }
 
     };
 
