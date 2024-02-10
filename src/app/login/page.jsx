@@ -2,12 +2,13 @@
 import Link from "next/link";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import {signIn} from "next-auth/react"
+import {signIn, useSession} from "next-auth/react"
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
 
 const Login = () => {
     const router = useRouter()
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +26,7 @@ const Login = () => {
             } else {
                 toast.success("Logged in Successfully");
                 router.push("/")
-            }
+            };
             
         } catch (error) {
             
