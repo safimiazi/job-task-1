@@ -9,6 +9,15 @@ import { useSession, signOut } from 'next-auth/react';
 const Header = () => {
   const { darkTheme, setDarkTheme } = useContext(ThemeContext)
   const { data, status } = useSession()
+  console.log("data", data);
+
+  const handleLogout = () => {
+    // Clear user data from local storage
+    localStorage.removeItem('user');
+
+    // Perform the logout action
+    signOut({ callbackUrl: "/login" });
+};
   return (
     <header className='py-10 px-10 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between'>
       <div className='flex items-center w-full md:h-2/3'>
@@ -46,7 +55,7 @@ const Header = () => {
 
         </li>
         <li className='hover:-translate-y-2 duration-500 transition-all'>
-          <Link href="/profile">Profile</Link>
+          <Link href="/contact">Contact</Link>
 
         </li>
         <li>
@@ -58,7 +67,7 @@ const Header = () => {
               </li>
               <li className='hover:-translate-y-2 duration-500 transition-all'>
 
-                <a className='md:ml-3 ml-1 cursor-pointer' onClick={() => signOut({ callbackUrl: "/login" })}>Logout</a>
+                <a className='md:ml-3 ml-1 cursor-pointer' onClick={handleLogout}>Logout</a>
               </li>
             </div>
 

@@ -15,6 +15,7 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const localData = {name, email}
     const data = { name, email, password };
 
     try {
@@ -30,6 +31,7 @@ const Register = () => {
         // Registration successful
         const responseData = await response.json();
         console.log('Registration successful:', responseData);
+       localStorage.setItem('user', JSON.stringify(localData))
         toast.success('Registration successful'); 
         router.push("/login")
       } else {

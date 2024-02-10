@@ -29,7 +29,7 @@ const Login = () => {
             
         } catch (error) {
             
-        }
+        };
 
     };
 
